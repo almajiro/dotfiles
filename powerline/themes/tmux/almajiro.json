@@ -1,0 +1,23 @@
+{
+	"segments": {
+		"right": [
+      {
+        "function": "powerline.segments.common.players.mpd",
+        "name": "player",
+         "args": {
+           "format": "{state_symbol} {artist}/{title}"
+         },
+         "priority": 70
+      },
+      {
+        "function": "powerline.segments.common.bat.battery",
+        "before": "Battery:",
+        "width": 16,
+        "align": "c"
+      },
+			{
+				"function": "powerline.segments.common.net.hostname"
+			}
+		]
+	}
+}
