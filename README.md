@@ -1,5 +1,5 @@
 # almajiro's dotfiles
-my dotfiles. the installer is not created yet.
+my dotfiles for linux systems. the installer is not created yet.
 # screenshot
 ![screenshot1][screenshot1]
 
