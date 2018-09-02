@@ -9,59 +9,85 @@ __version__    = "1.0"
 from scripts.helper import \
     setForeground, \
     setBackground, \
+    setFont, \
     textParser, \
-    RIGHT_SOFT_ARROW, \
-    RIGHT_HARD_ARROW, \
-    LEFT_SOFT_ARROW, \
-    LEFT_HARD_ARROW
+    ARROWS
 
+from scripts import gmc
 from scripts import mpdDisplay
 from scripts import dateDisplay
 from scripts import prayerDisplay
-from scripts import gmc
+from scripts import interfaceDisplay
 
-FONT1 = 'ProFontIIx Nerd Font Mono'
-FONT2 = 'Noto Sans CJK JP'
+import sys
+import argparse
 
-LONGITUDE = 60.413533 
-LATITUDE = 36.131438
-TIMEZONE = 9
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description = 'Fully customizable Powerline for dzen2.')
+    parser.add_argument('align', help = 'Set alignement of content')
+    parser.add_argument('--separator', type = int, help = 'Set powerline separator to display', default = 0)
 
-NETWORK_INTERFACE='wlo1'
-DISPLAY_ALIGN = 'right'
-OUTPUT = ''
+    args = parser.parse_args()
 
-if DISPLAY_ALIGN == 'right':
-    ARROW = LEFT_HARD_ARROW
-elif DISPLAY_ALIGN == 'left':
-    ARROW = RIGHT_HARD_ARROW
+    FONT1 = 'ProFontIIx Nerd Font Mono'
+    FONT2 = 'Noto Sans CJK JP'
 
-toDisplay = [
-    {
-        'text'       : mpdDisplay.status(),
-        'color'      : gmc.color['white'],
-        'background' : gmc.color['red400']
-    },
-    {
-        'text'       : prayerDisplay.status(LONGITUDE, LATITUDE, TIMEZONE),
-        'color'      : gmc.color['white'],
-        'background' : gmc.color['green400']
-    },
-    {
-        'text'       : dateDisplay.date(),
-        'color'      : gmc.color['white'],
-        'background' : gmc.color['grey400']
-    }
-]
+    LONGITUDE = 98.601719 
+    LATITUDE = 36.131438
 
-for display in toDisplay:
-    text = setForeground(display['background'])
-    text += ARROW
-    text += setBackground(display['background'])
-    text += setForeground(display['color'])
+    TIMEZONE = 9
 
-    text += ' ' + textParser(display['text'], FONT1, FONT2) + ' '
+    NETWORK_INTERFACE='wlo1'
 
-    OUTPUT += text
+    ARROW = ARROWS[args.align][args.separator] 
 
-print(OUTPUT)
+    toDisplay = [
+        {
+            'text'       : mpdDisplay.status(ARROWS[args.align][1]),
+            'color'      : gmc.color['white'],
+            'background' : gmc.color['red400']
+        },
+        {
+            'text'       : prayerDisplay.status(LONGITUDE, LATITUDE, TIMEZONE),
+            'color'      : gmc.color['white'],
+            'background' : gmc.color['green400']
+        },
+        {
+            'text'       : dateDisplay.date(),
+            'color'      : gmc.color['white'],
+            'background' : gmc.color['grey400']
+        },
+        {
+            'text'       : interfaceDisplay.ip(NETWORK_INTERFACE),
+            'color'      : gmc.color['white'],
+            'background' : gmc.color['blue400']
+        },
+        {
+            'text'       : interfaceDisplay.hostname(),
+            'color'      : gmc.color['white'],
+            'background' : gmc.color['pink700']
+        }
+    ]
+
+    OUTPUT = ''
+    for display in toDisplay:
+        if args.align == 'right':
+            text = setForeground(display['background'])
+            text += setFont(FONT1)
+            text += ARROW
+            text += setBackground(display['background'])
+            text += setForeground(display['color'])
+            text += ' ' + textParser(display['text'], FONT1, FONT2) + ' '
+
+            OUTPUT += text
+        elif args.align == 'left':
+            text = setBackground(display['background'])
+            text += setForeground(display['color'])
+            text += ' ' + textParser(display['text'], FONT1, FONT2) + ' '
+            text += setForeground(display['background'])
+            text += setFont(FONT1)
+            text += ARROW
+            
+            OUTPUT += text
+
+    print(OUTPUT)

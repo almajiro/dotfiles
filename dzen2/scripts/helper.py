@@ -6,10 +6,16 @@ __email__      = "kuroki@almajiro.net"
 __licence__    = "MIT"
 __version__    = "1.0"
 
-RIGHT_HARD_ARROW = '^fn(powerlinesymbols-14)^fn()'
-RIGHT_SOFT_ARROW = '^fn(powerlinesymbols-14)^fn()'
-LEFT_HARD_ARROW  = '^fn(powerlinesymbols-14)^fn()'
-LEFT_SOFT_ARROW  = '^fn(powerlinesymbols-14)^fn()'
+import unicodedata
+
+ARROWS = {
+    'right': [
+        '', '', '', '', '', '', '' , '', '', ''
+    ],
+    'left': [
+        '', '', '', '', '', '', '', '', '', '', '', '', '', ''
+    ]
+}
 
 def textParser(text, font, fallbackFont):
     encode = not isAscii(text)
@@ -18,8 +24,11 @@ def textParser(text, font, fallbackFont):
 
     if encode == True:
         lastFont = font
+        _text += setFont(font)
         for ch in text:
-            if isAscii(ch) or (ch >= "\f000" and ch <= "\ffff"):
+            # debug
+            # print(ch + "=>" + str(isJapanese(ch)))
+            if isAscii(ch) or not isJapanese(ch):
                 if lastFont == font:
                     _text += ch
                 else:
@@ -37,6 +46,28 @@ def textParser(text, font, fallbackFont):
         _text += text
 
     return _text
+
+def isJapanese(text):
+    for ch in text:
+        try:
+            name = unicodedata.name(ch)
+
+            # debug
+            # print(name)
+            if "CJK UNIFIED" in name \
+                    or "IDEOGRAPHIC FULL STOP" in name \
+                    or "FULLWIDTH TILDE" in name \
+                    or "HYPHEN-MINUS" in name\
+                    or "CORNER BRACKET" in name \
+                    or "EXCLAMATION MARK" in name \
+                    or "WAVE DASH" in name \
+                    or "HIRAGANA" in name \
+                    or "KATAKANA" in name:
+                return True
+        except ValueError:
+            return False
+
+    return False
 
 '''
 In python3 rename the unicode type to str, the old str type has been replaced by bytes

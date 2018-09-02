@@ -8,17 +8,22 @@ __version__    = "1.0"
 
 import mpd
 
-client = mpd.MPDClient(use_unicode=True)
-client.connect('localhost', 6600)
+def status(separator = '|'):
+    client = mpd.MPDClient(use_unicode=True)
+    client.connect('localhost', 6600)
 
-def status():
     if client.status()['state'] == 'play':
         songInfo = client.currentsong()
-        text = ' ' + songInfo['artist'] + ' / ' + songInfo['title'] + ' / ' + songInfo['album']
+        text = ' ' + ' ' + songInfo['artist'] + ' ' + separator
+        text += '  ' + songInfo['album'] + ' ' + separator
+        text += '  ' + songInfo['title']
 
-    elif client.status()['state'] == 'paused':
-        text = 'Paused'
+    elif client.status()['state'] == 'pause':
+        songInfo = client.currentsong()
+        text = ' ' + ' ' + songInfo['artist'] + ' ' + separator        
+        text += '  ' + songInfo['album'] + ' ' + separator        
+        text += '  ' + songInfo['title']                        
     elif client.status()['state'] == 'stop':
-        text = 'Stop'
+        text = ' MPD is Stop'
 
     return text

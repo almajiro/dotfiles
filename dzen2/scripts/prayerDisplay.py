@@ -20,7 +20,7 @@ def status(longitude, latitude, timezone):
         if prayerTime[time] > now.time():
             break
 
-    text = time + ' ' + str(prayerTime[time].hour) + ':' + str(prayerTime[time].minute)
+    text = ' ' + time + ' ' + str(prayerTime[time].hour).zfill(2) + ':' + str(prayerTime[time].minute).zfill(2)
 
     return text
 
