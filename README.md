@@ -9,5 +9,6 @@ my dotfiles for linux systems. the installer is not created yet.
 * [tmux](https://github.com/tmux/tmux)
 * [urxvt](http://cvs.schmorp.de/rxvt-unicode/)
 * [vis](https://github.com/dpayne/cli-visualizer)
+* [dzen2](https://github.com/minos-org/dzen2)
 
 [screenshot1]: https://github.com/almajiro/dotfiles/raw/master/screenshots/1.png
