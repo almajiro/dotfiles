@@ -32,7 +32,7 @@ if __name__ == '__main__':
     parser.add_argument('--timezone', type = int, help = 'Set Timezone', default = 0)
     parser.add_argument('--font', type = str, help = 'Set custom font.', default = 'ProFontIIx Nerd Font Mono')
     parser.add_argument('--fallback-font', type = str, help = 'Set fallback font.', default = 'Noto Sans CJK JP')
-    parser.add_argument('--interface', type = str, help = 'Set network interface', default = 'w;o1')
+    parser.add_argument('--interface', type = str, help = 'Set network interface', default = 'wlo1')
 
     args = parser.parse_args()
 

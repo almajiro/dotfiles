@@ -10,7 +10,7 @@ import socket
 import netifaces
 
 def ip(interface):
-    ip = netifaces.ifaddresses('wlo1')[netifaces.AF_INET][0]['addr']
+    ip = netifaces.ifaddresses(interface)[netifaces.AF_INET][0]['addr']
     return ip
 
 def hostname():

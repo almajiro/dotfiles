@@ -1,0 +1,79 @@
+DZEN(1)                                        General Commands Manual                                        DZEN(1)
+
+NNAAMMEE
+       dzen2 - general-purpose messaging and notification for X11
+
+SSYYNNOOPPSSIISS
+       ddzzeenn22 [-v] [-p [seconds]] [-m [v|h]] [-ta <l|c|r>] [-sa <l|c|r>]
+             [-x <pixel>] [-y <pixel>] [-w <pixel>] [-tw <pixel>] [-u]
+             [-e <string>] [-l <lines>]  [-fn <font>] [-bg <color>]
+             [-fg <color>] [-xs <screen>]
+
+DDEESSCCRRIIPPTTIIOONN
+       DDzzeenn  is  a  general-purpose messaging and notification program for X11, desigend to be scriptable in any lan‐
+       guage and integrate well with window managers like dwm, wmii and xmonad though it will work with  any  window‐
+       manger.
+
+       DDzzeenn  expects  the  status message on its standard input, and uses a custom formatting language for colors and
+       several other features (like bar meters and such). See README for detailed usage and scripting instructions.
+
+OOPPTTIIOONNSS
+       --ffgg <<ccoolloorr>>
+              Set foreground color. The <color> can be specified either as symbolic name (e.g. red, darkgreen,  etc.)
+              or as #rrggbb hex-value (e.g. #ffffaa).
+
+       --bbgg <<ccoolloorr>>
+              Set background color (same format as -fg).
+
+       --ffnn <<ffoonntt>>
+              Set font (using the format of xlsfonts and xfontsel).
+
+       --ttaa <<ll||cc||rr>>
+              Set alignement of title window content: l(eft), c(center) or r(ight).
+
+       --ttww <<ppiixxeellss>>
+              Set title window width.
+
+       --ssaa <<ll||cc||rr>>
+              Set alignment of slave window (see --ttaa ).
+
+       --ll <<lliinneess>>
+              Number of lines to display in slave window (see (1) in README).
+
+       --ee <<eevveenntt11==aaccttiioonn11::ooppttiioonn11::......,,aaccttiioonn22;;eevveenntt22==......>>
+              Set up events and actions, eg. responses to mouse clicks (see (2) in README).
+
+       --mm     Start up in menu mode (see (3) in README).
+
+       --uu     Update contents of title and slave window simultaneously, see (see (4) in README).
+
+       --pp [[<<ttiimmeeoouutt>>]]
+              Persist EOF (optional timeout in seconds).
+
+       --xx <<ppiixxeellss>>
+              Set x position on the screen.
+
+       --yy <<ppiixxeellss>>
+              Set y position on the screen.
+
+       --hh <<ppiixxeellss>>
+              Set line height (defaults to fontheight + 2 pixels).
+
+       --ww <<ppiixxeellss>>
+              width
+
+       --xxss <<nn>>
+              Set the Xinerama screen number where dzen should appear.
+
+       --vv     Display version information.
+
+AAUUTTHHOORR
+       DDzzeenn22  has  been written by RRoobbeerrtt MMaanneeaa..  This manpage has been written, based on dzen documentation, by Petr
+       Ročkai, for Debian GNU/Linux, but may be used by others. This manpage falls under the same  licence  as  Dzen2
+       itself, see /usr/share/doc/dzen2/copyright.
+
+SSEEEE AALLSSOO
+       ddzzeenn22--ddbbaarr(1),  ddzzeenn22--ggccppuubbaarr(1),  ddzzeenn22--ggddbbaarr(1), and ddzzeenn22--tteexxttwwiiddtthh(1).  More detailed documentation (espe‐
+       cially on the formatting language of dzen2) is available in /usr/share/doc/dzen2/README.gz.
+
+                                                                                                              DZEN(1)

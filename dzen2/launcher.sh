@@ -5,10 +5,11 @@
 # kick this file when user logged in
 ###################################################
 
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
 generated_output() {
   while true; do
-    ./launcher.py right --separator 4
+    $SCRIPT_DIR/launcher.py right --separator 4 --latitude 36.131438 --longitude 139.601719 --timezone 9
     sleep 1
   done
 }
