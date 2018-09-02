@@ -23,7 +23,7 @@ from scripts import gmc
 FONT1 = 'ProFontIIx Nerd Font Mono'
 FONT2 = 'Noto Sans CJK JP'
 
-LONGITUDE = 139.601719 
+LONGITUDE = 60.413533 
 LATITUDE = 36.131438
 TIMEZONE = 9
 
