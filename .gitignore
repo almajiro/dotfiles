@@ -1,2 +1,4 @@
 *.pyc
 *.pyo
+startup.sh
+__pycache__/
