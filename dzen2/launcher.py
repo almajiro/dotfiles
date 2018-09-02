@@ -21,24 +21,29 @@ from scripts import interfaceDisplay
 
 import sys
 import argparse
+from pprint import pprint
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description = 'Fully customizable Powerline for dzen2.')
     parser.add_argument('align', help = 'Set alignement of content')
     parser.add_argument('--separator', type = int, help = 'Set powerline separator to display', default = 0)
+    parser.add_argument('--longitude', type = float, help = 'Set Longitude', default = 23.885942)
+    parser.add_argument('--latitude', type = float, help = 'Set Latitute', default = 45.079162)
+    parser.add_argument('--timezone', type = int, help = 'Set Timezone', default = 0)
+    parser.add_argument('--font', type = str, help = 'Set custom font.', default = 'ProFontIIx Nerd Font Mono')
+    parser.add_argument('--fallback-font', type = str, help = 'Set fallback font.', default = 'Noto Sans CJK JP')
+    parser.add_argument('--interface', type = str, help = 'Set network interface', default = 'w;o1')
 
     args = parser.parse_args()
 
-    FONT1 = 'ProFontIIx Nerd Font Mono'
-    FONT2 = 'Noto Sans CJK JP'
+    # pprint(args)
 
-    LONGITUDE = 98.601719 
-    LATITUDE = 36.131438
-
-    TIMEZONE = 9
-
-    NETWORK_INTERFACE='wlo1'
-
+    FONT1 = args.font
+    FONT2 = args.fallback_font
+    LONGITUDE = args.longitude
+    LATITUDE = args.latitude
+    TIMEZONE = args.timezone
+    NETWORK_INTERFACE = args.interface
     ARROW = ARROWS[args.align][args.separator] 
 
     toDisplay = [
