@@ -11,9 +11,9 @@ import netifaces
 
 def ip(interface):
     ip = netifaces.ifaddresses(interface)[netifaces.AF_INET][0]['addr']
-    return ip
+    return ' ' + ip
 
 def hostname():
     hostname = socket.gethostname()
-    return hostname
+    return ' ' + hostname
 
