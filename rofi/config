@@ -1,0 +1,4 @@
+rofi.modi:              window,drun,ssh
+rofi.sidebar-mode:      true
+rofi.hide-scrollbar:    true
+rofi.theme:             ~/.cache/wal/colors-rofi-dark.rasi
